@@ -163,13 +163,13 @@ func analyzeAreas(areas []Area) {
 			if area.Enabled {
 				disableArea(area)
 			} else {
-				log.Infof("%s already disabled", area.Name)
+				log.Infof("%s already disabled (%d)", area.Name, localTime.Hour())
 			}
 		} else {
 			if !area.Enabled {
 				enableArea(area)
 			} else {
-				log.Infof("%s already enabled", area.Name)
+				log.Infof("%s already enabled (%d)", area.Name, localTime.Hour())
 			}
 		}
 	}
