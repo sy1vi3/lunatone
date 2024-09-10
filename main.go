@@ -159,7 +159,7 @@ func analyzeAreas(areas []Area) {
 		if slices.Contains(config.Config.Settings.ExcludeAreas, area.ID) {
 			continue
 		}
-		if localTime.Hour() > config.Config.Settings.DisableHour || localTime.Hour() < config.Config.Settings.EnableHour || area.Workers == 0 {
+		if localTime.Hour() >= config.Config.Settings.DisableHour || localTime.Hour() < config.Config.Settings.EnableHour || area.Workers == 0 {
 			if area.Enabled {
 				disableArea(area)
 			} else {
