@@ -175,6 +175,17 @@ func analyzeAreas(areas []Area) {
 	}
 }
 
+func reloadDragonite() {
+	req, _ := http.NewRequest("GET", config.Config.Settings.DragoURL+"/reload/accounts", nil)
+	req.Header.Set("Cookie", "authorized="+config.Config.Settings.DragoAuth)
+
+	_, err := httpClient.Do(req)
+	if err != nil {
+		log.Debug("Error reloading dragonite accounts:", err)
+		return
+	}
+}
+
 func main() {
 	config.ReadConfig()
 	httpClient = http.Client{
@@ -186,4 +197,5 @@ func main() {
 		log.Error(err)
 	}
 	analyzeAreas(areas)
+	reloadDragonite()
 }
