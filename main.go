@@ -93,6 +93,9 @@ func getDragoAreas() ([]Area, error) {
 		json.NewDecoder(resp.Body).Decode(&decodedAreas)
 
 		for _, area := range decodedAreas.Data {
+			if len(area.Geofence) == 0 {
+				continue
+			}
 			loc := area.Geofence[0]
 			tz := timezonemapper.LatLngToTimezoneString(loc.Lat, loc.Lon)
 			location, _ := time.LoadLocation(tz)
